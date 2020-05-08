@@ -1623,10 +1623,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08728a536709c2e4bbe0e3d03d0647b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell01: {fileID: -2084850121631410003, guid: d5fe70e39556c9c45b80137bdfa23fe6,
+  projectile: {fileID: 4304572911209054690, guid: 33e16d078d29c80489eb29e7df5b1043,
     type: 3}
   spine: {fileID: 117902862}
-  speed: 25
+  projectileSize: 0.2
 --- !u!143 &1736716834
 CharacterController:
   m_ObjectHideFlags: 0
