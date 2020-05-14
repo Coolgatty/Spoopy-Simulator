@@ -20,17 +20,32 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 500.0F;
     private CharacterController controller;
     public bool jumping;
+
+    public int selectedSlot = 1;
+    ProjectileSpawner spawner;
     // Start is called before the first frame update
     void Start()
     {
         anim = this.GetComponent<Animator>();
         controller = this.GetComponent<CharacterController>();
         cam = Camera.main;
+        spawner = GetComponent<ProjectileSpawner>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            selectedSlot = 1;
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            selectedSlot = 2;
+        }
+
+        spawner.switchSlot(selectedSlot);
+
         InputX = Input.GetAxis("Horizontal");
         InputZ = Input.GetAxis("Vertical");
 

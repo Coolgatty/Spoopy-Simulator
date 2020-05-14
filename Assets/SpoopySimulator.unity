@@ -206,11 +206,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117902862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.11, z: -0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0.198}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1628712646}
-  m_RootOrder: 1
+  m_Father: {fileID: 1736716831}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &144935739
 GameObject:
@@ -1504,12 +1504,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499058511}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1628712646 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400106, guid: 39d03f82786b57d41af8bd27bce84402,
-    type: 3}
-  m_PrefabInstance: {fileID: 1680188755}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1680188755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1627,10 +1621,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08728a536709c2e4bbe0e3d03d0647b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 4304572911209054690, guid: 33e16d078d29c80489eb29e7df5b1043,
+  fireball: {fileID: 4304572911209054690, guid: 33e16d078d29c80489eb29e7df5b1043,
     type: 3}
+  iceshard: {fileID: 4160077518318312114, guid: 8e8c5416618fe6e4083b216607498dfb,
+    type: 3}
+  fireballSize: 0.2
+  iceShardSize: 1
   spine: {fileID: 117902862}
-  projectileSize: 0.2
 --- !u!143 &1736716834
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1673,6 +1670,7 @@ MonoBehaviour:
   gravity: 20
   jumpSpeed: 8
   jumping: 0
+  selectedSlot: 1
 --- !u!1 &1852123881
 GameObject:
   m_ObjectHideFlags: 0

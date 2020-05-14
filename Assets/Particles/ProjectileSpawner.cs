@@ -5,10 +5,16 @@ using UnityEngine;
 public class ProjectileSpawner : MonoBehaviour
 {
     private Animator anim;
-    public GameObject projectile;
-    public GameObject spine;
-    [SerializeField] float projectileSize = 1f;
 
+    [SerializeField] private GameObject fireball;
+    [SerializeField] private GameObject iceshard;
+
+    [SerializeField] float fireballSize = 1f;
+    [SerializeField] float iceShardSize = 1f;
+
+    [SerializeField] private GameObject spine;
+
+    private int currentSlot = 1;
     Camera cam;
     // Start is called before the first frame update
     void Start()
@@ -22,15 +28,37 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SpawnProjectile();
+            switch(currentSlot)
+            {
+                case 1:
+                    SpawnFireball();
+                    break;
+                case 2:
+                    SpawnIceShard();
+                    break;
+                default:
+                    Debug.Log("No current slot. Something broke");
+                    break;
+            }
         }
 
     }
 
-    private void SpawnProjectile()
+    private void SpawnFireball()
     {
-        GameObject p = Instantiate(projectile, spine.transform.position, cam.transform.rotation);
-        p.transform.localScale = Vector3.one * projectileSize;
+        GameObject p = Instantiate(fireball, spine.transform.position, cam.transform.rotation);
+        p.transform.localScale = Vector3.one * fireballSize;
         anim.Play("CastSpell");
+    }
+
+    private void SpawnIceShard()
+    {
+        GameObject p = Instantiate(iceshard, spine.transform.position, cam.transform.rotation);
+        p.transform.localScale = Vector3.one * iceShardSize;
+    }
+
+    public void switchSlot(int slot)
+    {
+        currentSlot = slot;
     }
 }

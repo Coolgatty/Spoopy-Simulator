@@ -4775,6 +4775,7 @@ GameObject:
   - component: {fileID: 4304572911209054695}
   - component: {fileID: 4304572911209054688}
   - component: {fileID: 1964478658693745509}
+  - component: {fileID: 7367559913048297950}
   m_Layer: 0
   m_Name: Fireball Particles
   m_TagString: Untagged
@@ -8495,7 +8496,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minKillSpeed: 0
-    maxKillSpeed: 10000
+    maxKillSpeed: 0
     radiusScale: 0.1
     collidesWith:
       serializedVersion: 2
@@ -8522,7 +8523,12 @@ ParticleSystem:
   SubModule:
     serializedVersion: 2
     enabled: 0
-    subEmitters: []
+    subEmitters:
+    - serializedVersion: 3
+      emitter: {fileID: 0}
+      type: 4
+      properties: 0
+      emitProbability: 1
   LightsModule:
     enabled: 1
     ratio: 1
@@ -9530,9 +9536,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   fireRate: 0
-  explosion: {fileID: 3204852023032149867, guid: 322d36ba8a9e3ee44a99d5f94a61e115,
+  explosion: {fileID: 644316901715161051, guid: 845764cd53841084296c22b2246d3f7c,
     type: 3}
-  explosionSize: 0.1
+  explosionSize: 1
+--- !u!114 &7367559913048297950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4304572911209054690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d267668217f6514b98a93495d3d5edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4304572912574941647
 GameObject:
   m_ObjectHideFlags: 0

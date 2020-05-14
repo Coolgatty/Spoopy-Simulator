@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileMovement : MonoBehaviour
+public class FireballBehaviour : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float fireRate;
 
     [SerializeField] ParticleSystem explosion;
     [SerializeField] float explosionSize;
+
+    ParticleSystem ps;
 
     Vector3 velocity;
     Vector3 initPos;
@@ -17,6 +19,7 @@ public class ProjectileMovement : MonoBehaviour
         initPos = transform.position;
         velocity = (transform.forward + Vector3.up * 0.2f) * speed;
         transform.rotation = Quaternion.LookRotation(velocity);
+        ps = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,11 @@ public class ProjectileMovement : MonoBehaviour
         if (distanceTravelled > 35)
         {
             Explode();
+        }
+
+        if (!ps.IsAlive())
+        {
+            Destroy(gameObject);
         }
     }
 
