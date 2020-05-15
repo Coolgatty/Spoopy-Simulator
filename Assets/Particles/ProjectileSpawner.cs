@@ -31,30 +31,23 @@ public class ProjectileSpawner : MonoBehaviour
             switch(currentSlot)
             {
                 case 1:
-                    SpawnFireball();
+                    CastSpell(ref fireball, fireballSize);
                     break;
                 case 2:
-                    SpawnIceShard();
+                    CastSpell(ref iceshard, iceShardSize);
                     break;
                 default:
                     Debug.Log("No current slot. Something broke");
                     break;
             }
         }
-
     }
 
-    private void SpawnFireball()
+    private void CastSpell(ref GameObject spell, float size)
     {
-        GameObject p = Instantiate(fireball, spine.transform.position, cam.transform.rotation);
-        p.transform.localScale = Vector3.one * fireballSize;
+        GameObject p = Instantiate(spell, spine.transform.position, cam.transform.rotation);
+        p.transform.localScale = Vector3.one * size;
         anim.Play("CastSpell");
-    }
-
-    private void SpawnIceShard()
-    {
-        GameObject p = Instantiate(iceshard, spine.transform.position, cam.transform.rotation);
-        p.transform.localScale = Vector3.one * iceShardSize;
     }
 
     public void switchSlot(int slot)
