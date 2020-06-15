@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4160077518318312117}
   - component: {fileID: 4160077518318312116}
   - component: {fileID: -1153331394883141094}
+  - component: {fileID: 3970653735869117432}
   m_Layer: 0
   m_Name: Ice Shard Particles
-  m_TagString: Untagged
+  m_TagString: iceshard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4768,6 +4769,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d267668217f6514b98a93495d3d5edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3970653735869117432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160077518318312114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daad03868f409f94fb1310e4e7e1d276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0
+  minDamage: 5
+  maxDamage: 8
 --- !u!1 &7693619053764393418
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballBehaviour : MonoBehaviour
+public class FireballBehaviour : MonoBehaviour // todo: create base class projectile/spell
 {
+    const float cooldown = 1.25f;
+    public static bool onCooldown;
+
+    private static float cooldownTimer = cooldown;
+    public static float CooldownTimer // todo: should be in base class
+    {
+        get
+        {
+            return cooldownTimer;
+        }
+        set
+        {
+            if (onCooldown)
+            {
+                cooldownTimer = value;
+            }
+            else
+            {
+                cooldownTimer = cooldown;
+            }
+            if (value <= 0)
+            {
+                cooldownTimer = cooldown;
+                onCooldown = false;
+            }
+        }
+    }
+
     [SerializeField] float speed;
-    [SerializeField] float fireRate;
+    [SerializeField] float fireRate; // todo: implement fireRate
 
     [SerializeField] ParticleSystem explosion;
     [SerializeField] float explosionSize;
+
+    [SerializeField]
+    private float minDamage;
+    [SerializeField]
+    private float maxDamage;
 
     ParticleSystem ps;
 
@@ -17,9 +50,10 @@ public class FireballBehaviour : MonoBehaviour
     void Start()
     {
         initPos = transform.position;
-        velocity = (transform.forward + Vector3.up * 0.2f) * speed;
+        velocity = (transform.forward + Vector3.up * 0.1f) * speed; // direction * speed; direction should go in base class
         transform.rotation = Quaternion.LookRotation(velocity);
         ps = GetComponent<ParticleSystem>();
+        onCooldown = true;
     }
 
     // Update is called once per frame
@@ -51,6 +85,10 @@ public class FireballBehaviour : MonoBehaviour
         if (other.tag != "Player")
         {
             Explode();
+        }
+        if (other.GetComponent<Entity>() != null)
+        {
+            other.GetComponent<Entity>().RecieveDamage(Random.Range(minDamage, maxDamage));
         }
     }
 

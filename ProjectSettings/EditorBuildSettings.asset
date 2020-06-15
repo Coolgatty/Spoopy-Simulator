@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SpoopySimulator.unity
+    path: Assets/Scenes/SpoopySimulator.unity
     guid: f52c91ed65838c74785e733add6b80f0
   m_configObjects: {}

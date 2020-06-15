@@ -26,26 +26,38 @@ public class ProjectileSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!anim.GetBool("Dead"))
         {
-            switch(currentSlot)
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
             {
-                case 1:
-                    CastSpell(ref fireball, fireballSize);
-                    break;
-                case 2:
-                    CastSpell(ref iceshard, iceShardSize);
-                    break;
-                default:
-                    Debug.Log("No current slot. Something broke");
-                    break;
+                switch(currentSlot)
+                {
+                    case 1:
+                        if (!FireballBehaviour.onCooldown)
+                        {
+                            CastSpell(ref fireball, fireballSize);
+                        }
+                        break;
+                    case 2:
+                        if (!IceShardBehaviour.onCooldown)
+                        {
+                            CastSpell(ref iceshard, iceShardSize);
+                        }
+                        break;
+                    default:
+                        Debug.Log("No current slot. Something broke");
+                        break;
+                }
             }
         }
+        FireballBehaviour.CooldownTimer -= Time.deltaTime;
+        IceShardBehaviour.CooldownTimer -= Time.deltaTime;
+
     }
 
     private void CastSpell(ref GameObject spell, float size)
     {
-        GameObject p = Instantiate(spell, spine.transform.position, cam.transform.rotation);
+        GameObject p = Instantiate(spell, spine.transform.position + cam.transform.forward * 1.2f, cam.transform.rotation);
         p.transform.localScale = Vector3.one * size;
         anim.Play("CastSpell");
     }

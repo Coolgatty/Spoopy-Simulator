@@ -4778,7 +4778,7 @@ GameObject:
   - component: {fileID: 7367559913048297950}
   m_Layer: 0
   m_Name: Fireball Particles
-  m_TagString: Untagged
+  m_TagString: fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5426,9 +5426,9 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 6
-    enabled: 0
-    type: 4
-    angle: 25
+    enabled: 1
+    type: 10
+    angle: 90
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -5514,7 +5514,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -9539,6 +9539,8 @@ MonoBehaviour:
   explosion: {fileID: 644316901715161051, guid: 845764cd53841084296c22b2246d3f7c,
     type: 3}
   explosionSize: 1
+  minDamage: 40
+  maxDamage: 60
 --- !u!114 &7367559913048297950
 MonoBehaviour:
   m_ObjectHideFlags: 0
