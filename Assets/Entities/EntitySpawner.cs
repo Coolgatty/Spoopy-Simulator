@@ -39,16 +39,20 @@ public class EntitySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(player);
         if (player == null)
         {
             Debug.Log("No player object attached");
             return;
         }
-        playerPos = player.transform.position;
-        timeElapsed += Time.deltaTime;
-        RemoveNulls(entities);
-        SpawnEntityNearPlayer(spawnRadiusInner, spawnRadiusOuter, spawnProbability);
-        DespawnEntity();
+        else
+        {
+            playerPos = player.transform.position;
+            timeElapsed += Time.deltaTime;
+            RemoveNulls(entities);
+            SpawnEntityNearPlayer(spawnRadiusInner, spawnRadiusOuter, spawnProbability);
+            DespawnEntity();
+        }
     }
 
     private void RemoveNulls(List<GameObject> entities)

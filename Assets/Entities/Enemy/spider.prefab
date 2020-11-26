@@ -560,7 +560,7 @@ Animation:
   - {fileID: 7400024, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
+  m_AnimatePhysics: 1
   m_CullingType: 1
 --- !u!54 &7989017922594496291
 Rigidbody:
@@ -604,6 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 100
+  hitAnims: []
 --- !u!1 &7989017922555286260
 GameObject:
   m_ObjectHideFlags: 0

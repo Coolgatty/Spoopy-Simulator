@@ -6,7 +6,7 @@ public class SpiderAI : EntityAI
     Vector3 destination;
     [SerializeField]
     private float moveSpeed;
-    enum State { idle, moving, jumping, dead, changingState }
+    enum State { idle, moving, jumping, dead, changingState, damage }
     State state;
     Animation anim;
 
@@ -40,17 +40,14 @@ public class SpiderAI : EntityAI
             case State.idle:
                 Invoke("GetDestination", UnityEngine.Random.Range(2f, 4f));
                 SetState("changingState");
-                anim.Play("idle");
                 anim.clip = anim.GetClip("idle");
                 break;
             case State.moving:
                 MoveTowards(destination);
-                anim.Play("run");
                 anim.clip = anim.GetClip("run");
                 break;
             case State.jumping:
                 MoveTowards(destination);
-                anim.Play("jump");
                 anim.clip = anim.GetClip("jump");
                 if (isGrounded)
                 {
@@ -67,17 +64,34 @@ public class SpiderAI : EntityAI
                     int n = UnityEngine.Random.Range(0, 2);
                     if (n == 0)
                     {
-                        anim.Play("death1");
                         anim.clip = anim.GetClip("death1");
                     }
                     else if (n == 1)
                     {
-                        anim.Play("death2");
                         anim.clip = anim.GetClip("death2");
                     }
                 }
                 break;
+            case State.damage:
+                if (!anim.clip.ToString().Contains("hit"))
+                {
+                    int n = UnityEngine.Random.Range(0, 2);
+                    if (n == 0)
+                    {
+                        anim.clip = anim.GetClip("hit1");
+                    }
+                    else if (n == 1)
+                    {
+                        anim.clip = anim.GetClip("hit2");
+                    }
+                }
+                if (!anim.isPlaying && anim.clip.ToString().Contains("hit"))
+                {
+                    SetState("idle");
+                }
+                break;
         }
+        anim.Play();
     }
 
     private void FixedUpdate()
@@ -111,6 +125,7 @@ public class SpiderAI : EntityAI
         Vector3 position = transform.position + new Vector3(UnityEngine.Random.Range(-radius, radius), 0, UnityEngine.Random.Range(-radius, radius));
         if (Physics.Raycast(position + new Vector3(0, 100.0f, 0), Vector3.down, out hit, 200.0f))
         {
+            print(hit.point - transform.position);
             return hit.point;
         }
         else
@@ -153,6 +168,9 @@ public class SpiderAI : EntityAI
                 break;
             case "changingState":
                 state = State.changingState;
+                break;
+            case "damage":
+                state = State.damage;
                 break;
             default:
                 throw new ArgumentException();

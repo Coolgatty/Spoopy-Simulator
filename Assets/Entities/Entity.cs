@@ -6,7 +6,6 @@ public abstract class Entity : MonoBehaviour
 {
     [SerializeField]
     public float hitPoints;
-
     private EntityAI entityAI;
     protected virtual void Start()
     {
@@ -24,6 +23,7 @@ public abstract class Entity : MonoBehaviour
     public virtual void RecieveDamage(float damage)
     {
         hitPoints -= damage;
+        entityAI.SetState("damage");
     }
 
     protected virtual void Die()

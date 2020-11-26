@@ -53,7 +53,7 @@ public class Game : MonoBehaviour
         if (instantiatedPlayer == null)
         {
             instantiatedPlayer = new GameObject();
-            Invoke("InstantiatePlayer", 2);
+            InstantiatePlayer();
         }
     }
 
