@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EntitySpider : Entity
 {
-
     Animation anim;
     new void Start()
     {
@@ -17,4 +16,5 @@ public class EntitySpider : Entity
         base.Update();
     }
     
+
 }

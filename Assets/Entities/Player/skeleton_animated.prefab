@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf00b33f2555e04e93603a2f2d27bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 1000
+  hitPoints: 100
 --- !u!1 &8864321697454493970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,6 +1788,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

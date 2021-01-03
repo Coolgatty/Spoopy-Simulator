@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private float InputX;
     private float InputZ;
+    private bool InputY;
     private Vector3 desiredMoveDirection;
     public bool blockRotationPlayer;
     public float desiredRotationSpeed;
@@ -20,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private bool jumping;
 
+    EntityPlayer player;
+
     public int selectedSlot = 1;
     ProjectileSpawner spawner;
     // Start is called before the first frame update
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         controller = this.GetComponent<CharacterController>();
         cam = Camera.main;
         spawner = GetComponent<ProjectileSpawner>();
+        player = GetComponent<EntityPlayer>();
     }
 
     // Update is called once per frame
@@ -47,7 +51,21 @@ public class PlayerMovement : MonoBehaviour
 
         InputX = Input.GetAxis("Horizontal");
         InputZ = Input.GetAxis("Vertical");
-
+        InputY = Input.GetButtonDown("Jump");
+        isGrounded = CheckIsGrounded();
+        if (isGrounded && InputY)
+        {
+            jumping = true;
+            moveVector.y = jumpSpeed;
+        }
+        else if (!isGrounded && moveVector.y > -1.0f)
+        {
+            moveVector.y -= gravity * Time.deltaTime;
+        }
+        else if (isGrounded)
+        {
+            jumping = false;
+        }
         anim.SetBool("Jumping", jumping);
         
         InputMagnitude();
@@ -55,24 +73,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        InputX = Input.GetAxis("Horizontal");
-        InputZ = Input.GetAxis("Vertical");
-
-        isGrounded = CheckIsGrounded();
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            jumping = true;
-            moveVector.y = jumpSpeed;
-        }
-        else if(!isGrounded && moveVector.y > -1.0f)
-        {
-            moveVector.y -= gravity * Time.deltaTime;
-        }
-        else if(isGrounded)
-        {
-            jumping = false;
-        }
-
         moveVector.x = InputX * 4 * Time.deltaTime;
         moveVector.z = InputZ * 4 * Time.deltaTime;
         controller.Move(new Vector3(0, moveVector.y * Time.deltaTime, 0));
@@ -120,8 +120,9 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
+
         Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity);
-        if (hit.distance < 0.8f)
+        if (hit.distance < 0.5f)
         {
             return true;
         }

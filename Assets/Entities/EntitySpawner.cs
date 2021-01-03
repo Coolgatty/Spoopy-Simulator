@@ -39,7 +39,6 @@ public class EntitySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(player);
         if (player == null)
         {
             Debug.Log("No player object attached");
